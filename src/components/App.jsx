@@ -9,7 +9,7 @@ export const App = () => {
         fontSize: 40,
         color: '#010101'
       }}
-    >
+    >ghkgjh
       React homework template
     </div>
   );
