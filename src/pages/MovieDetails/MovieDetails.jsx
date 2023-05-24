@@ -1,5 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import BackLink from '../../components/BackLink';
 import MovieInfo from '../../components/MovieInfo';
 import { MoviesId } from '../../services/Api';
@@ -10,7 +10,7 @@ const MovieDetails = () => {
   const [moviesData, setMoviesData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const MovieDetails = () => {
   }, [movieId]);
   return (
     <main>
-      <BackLink to={backLinkHref}>Go back</BackLink>
+      <BackLink to={backLinkHref.current}>Go back</BackLink>
       {isLoading && <Ring><Loader /></Ring> }
       {moviesData && (
         <MovieInfo
