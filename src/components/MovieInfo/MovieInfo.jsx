@@ -2,8 +2,7 @@ import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import Loader from 'components/Loader';
-import {MovieBlock, MovieBox, ButtonBlock, Link} from './MovieInfo.styled'
-
+import { MovieBlock, MovieBox, ButtonBlock, Link } from './MovieInfo.styled';
 
 const MovieInfo = ({
   title,
@@ -40,7 +39,9 @@ const MovieInfo = ({
           </ButtonBlock>
         </Suspense>
       </div>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
@@ -57,4 +58,3 @@ MovieInfo.propTypes = {
     PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
   ).isRequired,
 };
-

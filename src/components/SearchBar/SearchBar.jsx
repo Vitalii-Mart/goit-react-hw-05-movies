@@ -2,14 +2,13 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Box, Icon, Input, Button, Form } from './SearchBar.styled';
 
-const SearchBar = ({ onChange }) => {
-  const [movieValue, setMovieValue] = useState('');
+const SearchBar = ({value, onChange }) => {
+  const [movieValue, setMovieValue] = useState(value);
   const nameChange = e => setMovieValue(e.currentTarget.value.toLowerCase());
   const handleSubmit = e => {
     e.preventDefault();
     if (movieValue.trim() !== '') {
       onChange(movieValue);
-      setMovieValue('');
     }
   };
   return (
@@ -29,6 +28,7 @@ const SearchBar = ({ onChange }) => {
   );
 };
 SearchBar.propTypes = {
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 

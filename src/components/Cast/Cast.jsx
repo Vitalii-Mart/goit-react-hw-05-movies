@@ -1,5 +1,5 @@
 import { useParams, Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { GetCredits } from '../../services/Api';
 import Loader from "components/Loader";
 import PropTypes from 'prop-types';
@@ -45,7 +45,9 @@ const Cast = () => {
                     <h3>{e.name}</h3>
                     <p>Character: {e.character}</p>
                   </div>
-                  <Outlet />
+                  <Suspense fallback={<Loader />}>
+                                <Outlet />
+                            </Suspense>
                 </li>
               ))}
             </List>
